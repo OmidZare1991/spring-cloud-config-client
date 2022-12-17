@@ -1,0 +1,43 @@
+#spring:
+#  profiles:
+#    active: northamerica
+#  application:
+#    name: lab-3-client
+##  cloud:
+##    config:
+##      uri: http://localhost:8001
+#  config:
+#    import: optional:configserver:http://localhost:8001
+#server:
+#  port: 8002
+
+
+
+
+
+# Properties active for ALL profiles:
+---
+# This 'name' of our application is important
+# as the config server typically has to serve up properties for many applictions:
+spring:
+  application:
+    name: lab-3-client					# What set of properties will we ask the config server for?
+
+  cloud:
+    config:
+      uri: http://localhost:8001		# Where should we call the config server at?
+      fail-fast: false # be setting to false the client try ro get the value of config parameters from its local file if the server is down
+
+server:
+  port: 8002							# What port should we expose for our web interface
+
+
+  # Uncomment these lines to activate "northamerica" as the active profile.
+  # Ordinarily we would not activate a profile from within a property file, but this is just a demo:
+---
+spring:
+ profiles:
+  active: northamerica
+
+
+
